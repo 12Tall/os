@@ -24,7 +24,7 @@ mov ax, foo     ; 将foo 的地址传递给ax
 mov ax, [foo]   ; 将1 传递给ax
 ```  
 
-- `$` 表示当前行地址，`$$` 表示当前节(section)起始的地址  
+- `$` 表示当前行地址，`$$` 表示当前节(section)起始的地址，⚠：`$`、`$$`都是与段密切相关的！  
 
 ```nasm
 section a aligin=b vstart=c
@@ -38,6 +38,8 @@ section a aligin=b vstart=c
 - 宏操作，例如：[pm.inc](./chapter03/pm.inc)  
 
 ```nasm
+; 宏命令一定要细心
+; 访问段出异常就要想到可能是段描述符配置错了
 %macro Macro 3  ; 开始 名称 参数个数
   dw %1         ; 参数1
   dw %2         ; 参数2
