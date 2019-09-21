@@ -35,6 +35,16 @@ section a aligin=b vstart=c
 
 - `times count db 0` 重复count 次db 0  
 
+- 宏操作，例如：[pm.inc](./chapter03/pm.inc)  
+
+```nasm
+%macro Macro 3  ; 开始 名称 参数个数
+  dw %1         ; 参数1
+  dw %2         ; 参数2
+  dw %3         ; 参数3
+%endmacro
+```
+
 ## Bochs  
 
 Bochs 还是有些坑需要踩的，具体配置可以参考`DLX Linux Demo` 进行配置  
@@ -109,3 +119,5 @@ Press any key to continue
 - win10 无法使用`rawwrite`诶。自己写了一个[工具](https://github.com/12Tall/bin2img)，还挺好用，同样最好也添加环境变量  
 
 - bochs 命令  
+
+## 保护模式  
