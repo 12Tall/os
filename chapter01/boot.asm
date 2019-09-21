@@ -17,7 +17,7 @@ DispStr:
     mov ax, 01301h  ; AH <= 13h, AL <= 01H
     mov bx, 000ch   ; display style
     mov dl, 0
-    int 10          ; #10 intterupt of bios
+    int 10h          ; #10h intterupt of bios
     ret
 
 BootMessage:

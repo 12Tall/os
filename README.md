@@ -39,6 +39,32 @@ section a aligin=b vstart=c
 
 Bochs 还是有些坑需要踩的，具体配置可以参考`DLX Linux Demo` 进行配置  
 
+- 路径问题  
+
+```ini
+# filename of ROM images
+# 可以用$BXSHARE 表示程序默认的安装路径
+romimage: file=$BXSHARE/BIOS-bochs-latest
+vgaromimage: file=$BXSHARE/VGABIOS-lgpl-latest
+# 键盘设置同上
+keyboard: keymap=$BXSHARE/keymaps/x11-pc-us.map
+```
+
+- 磁盘  
+
+```ini
+# what disk images will be used 
+floppya: 1_44=boot.img, status=inserted
+# floppyb: 1_44=floppyb.img, status=inserted
+
+# hard disk
+# ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
+# ata0-master: type=disk, path="hd10meg.img", cylinders=306, heads=4, spt=17
+
+# choose the boot disk.
+boot: floppy
+```
+
 - Bochs 自带`bximage` 工具，可以生成磁盘映像，但是要像linux 那样用的话注意添加环境变量  
 
 ```powershell
@@ -80,5 +106,6 @@ The following line should appear in your bochsrc:
 Press any key to continue
 ```  
 
-- win10 无法使用`rawwrite`诶  
+- win10 无法使用`rawwrite`诶。自己写了一个[工具](https://github.com/12Tall/bin2img)，还挺好用，同样最好也添加环境变量  
 
+- bochs 命令  
