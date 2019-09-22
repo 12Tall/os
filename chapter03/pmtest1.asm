@@ -13,7 +13,7 @@ LABEL_DESC_VIDEO:	Descriptor	0B8000h,0ffffh,			DA_DRW			; video cache section
 ; -----------------------------------------------------------------------
 
 GdtLen 	equ 	$ - LABEL_GDT	; length of gdt; limit = length-1
-GdtPtr	dw 	GdtLen - 1			;
+GdtPtr	dw 	GdtLen - 1			; !content of gdt register!
 		dd 	0					; base of gdt
 
 ; Selector: !just constant, not in memory
