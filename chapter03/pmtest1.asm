@@ -1,4 +1,5 @@
 %include "pm.inc"	; constant, macro
+%include "func.inc"
 
 org 07c00h
 jmp LABEL_BIGIN		; 4 bytes
@@ -34,14 +35,19 @@ LABEL_BIGIN:
 	mov sp, 0100h	; aligin to section base
 
 	; init cede32 descriptor
-	xor eax, eax	; reset eax
-	mov ax, cs		; 
-	shl eax, 4		; eax = cs << 4
-	add eax, LABEL_SEG_CODE32	; addr of code32 section
-	mov word [LABEL_DESC_CODE32 + 2], ax
-	shr eax, 16
-	mov byte [LABEL_DESC_CODE32 + 4], al
-	mov byte [LABEL_DESC_CODE32 + 7], ah
+	Init_Descriptor LABEL_DESC_CODE32, LABEL_SEG_CODE32
+	; /\
+	; ||
+	; --------------------------------------------------
+	; xor eax, eax	; reset eax
+	; mov ax, cs		; 
+	; shl eax, 4		; eax = cs << 4
+	; add eax, LABEL_SEG_CODE32	; addr of code32 section
+	; mov word [LABEL_DESC_CODE32 + 2], ax
+	; shr eax, 16
+	; mov byte [LABEL_DESC_CODE32 + 4], al
+	; mov byte [LABEL_DESC_CODE32 + 7], ah
+	; --------------------------------------------------
 
 	; prepare for loading GDTR(gdt register)
 	xor eax, eax
