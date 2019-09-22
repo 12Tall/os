@@ -47,6 +47,8 @@ section a aligin=b vstart=c
 %endmacro
 ```
 
+- `equ` 相当于定义了一个常量，但并不占内存空间，`db/dw/dd` 却会占用实际内存空间
+
 ## Bochs  
 
 Bochs 还是有些坑需要踩的，具体配置可以参考`DLX Linux Demo` 进行配置  
@@ -78,48 +80,11 @@ boot: floppy
 ```
 
 - Bochs 自带`bximage` 工具，可以生成磁盘映像，但是要像linux 那样用的话注意添加环境变量  
-
-```powershell
-PS D:\prj> bximage
-========================================================================
-                                bximage
-  Disk Image Creation / Conversion / Resize and Commit Tool for Bochs
-         $Id: bximage.cc 13069 2017-02-12 16:51:52Z vruppert $
-========================================================================
-
-1. Create new floppy or hard disk image
-2. Convert hard disk image to other format (mode)
-3. Resize hard disk image
-4. Commit 'undoable' redolog to base image
-5. Disk image info
-
-0. Quit
-
-Please choose one [0] 1
-
-Create image
-
-Do you want to create a floppy disk image or a hard disk image?
-Please type hd or fd. [hd] fd
-
-Choose the size of floppy disk image to create.
-Please type 160k, 180k, 320k, 360k, 720k, 1.2M, 1.44M, 1.68M, 1.72M, or 2.88M.
- [1.44M]
-
-What should be the name of the image?
-[a.img]
-
-Creating floppy image 'a.img' with 2880 sectors
-
-The following line should appear in your bochsrc:
-  floppya: image="a.img", status=inserted
-(The line is stored in your windows clipboard, use CTRL-V to paste)
-
-Press any key to continue
-```  
-
 - win10 无法使用`rawwrite`诶。自己写了一个[工具](https://github.com/12Tall/bin2img)，还挺好用，同样最好也添加环境变量  
 
 - bochs 命令  
 
 ## 保护模式  
+
+- 段描述符：从显存段描述符来看，段描述符里面的基址，应该是绝对地址；而且多个段描述符可以指向一个段  
+
