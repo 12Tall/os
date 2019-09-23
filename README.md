@@ -14,6 +14,14 @@ orange os 读书笔记
 ## nasm宏命令  
 
 - nasm 编译的机器指令一般是四字节(32 位)对齐的，因为cpu 读取指令时一般是四字节读取，会比较快  
+
+```nasm
+jmp $ ; 默认就是0000 FEEB
+[section .16]
+[BITS 16]
+jmp $ ; 默认就是FEEB
+```
+
 - `[]` 不被`[]`括起的标签或变量名都是地址  
 
 ```nasm
@@ -83,6 +91,7 @@ boot: floppy
 
 - Bochs 自带`bximage` 工具，可以生成磁盘映像，但是要像linux 那样用的话注意添加环境变量  
 - win10 无法使用`rawwrite`诶。自己写了一个[工具](https://github.com/12Tall/bin2img)，还挺好用，同样最好也添加环境变量  
+- Bochs 开机似乎只能装载第一个扇区，所以跳转到其他扇区的指令会失效！详见<chapter03/pmtest2.asm>
 
 - bochs 命令  
 
