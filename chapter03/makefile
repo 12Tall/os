@@ -9,3 +9,6 @@ ww:boot.bin
 
 build-test1:pmtest1.asm
 	nasm pmtest1.asm -o boot.bin
+
+build-test2:pmtest2.asm
+	nasm pmtest2.asm -o boot.bin

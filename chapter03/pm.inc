@@ -1,4 +1,4 @@
-; protect modal include file
+; protect mode include file
 
 ; Descriptor Ⅰ
 ; ----  ┏━━━┳━━━┓高地址

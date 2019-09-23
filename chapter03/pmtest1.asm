@@ -65,7 +65,7 @@ LABEL_BIGIN:
 	or al, 00000010b
 	out 92h, al
 
-	; exchange protect modal
+	; exchange protect mode
 	mov eax, cr0
 	or eax, 1
 	mov cr0, eax
