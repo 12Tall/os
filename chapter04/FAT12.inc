@@ -2,7 +2,7 @@
 BytsPerSec      equ 512
 IFATFirstSec    equ 1
 IRootSec        equ 19
-IDataSec        equ 19 + [BPB_RootEntCnt] * 32 / BPB_BytsPerSec         ; 19+BPB_RootEntCnt * 32 / BPB_BytsPerSec
+IDataSec        equ 33          ; 19+BPB_RootEntCnt * 32 / BPB_BytsPerSec
 
 %macro FAT12Header 3            ; FAT12 first sect
 ; instrcution                   ; offset    ; length    ; content

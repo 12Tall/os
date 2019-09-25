@@ -1,11 +1,15 @@
 
-run: bochsrc.bxrc
+run: wrtboot bochsrc.bxrc
 	bochs -q -f bochsrc.bxrc
-debug:ww bochsrc.bxrc
+
+debug: wrtboot bochsrc.bxrc
 	bochsdbg -q -f bochsrc.bxrc
 
-ww:build
-	bin2img -i boot.bin -o boot.img --b
-
-build:boot.asm
+wrtboot: build
+	dd if=../tools/empty.img of=boot.img bs=512 count=2880
+	dd if=boot.bin of=boot.img bs=512 count=1
+	
+build: boot.asm
 	nasm boot.asm -o boot.bin
+
+
