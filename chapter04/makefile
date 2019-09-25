@@ -1,5 +1,5 @@
 
-run:ww bochsrc.bxrc
+run: bochsrc.bxrc
 	bochs -q -f bochsrc.bxrc
 debug:ww bochsrc.bxrc
 	bochsdbg -q -f bochsrc.bxrc
