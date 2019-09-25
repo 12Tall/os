@@ -2,6 +2,7 @@
 BytsPerSec      equ 512
 IFATFirstSec    equ 1
 IRootSec        equ 19
+RootDirSectors  equ 14          ; root space(Sectors)
 IDataSec        equ 33          ; 19+BPB_RootEntCnt * 32 / BPB_BytsPerSec
 
 %macro FAT12Header 3            ; FAT12 first sect
