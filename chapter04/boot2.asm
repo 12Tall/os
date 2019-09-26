@@ -24,7 +24,7 @@ LABEL_SEARCH_IN_ROOT_DIR_BEGIN:
     cmp word [wRootDirSizeForLoop], 0   ; read over
     jz  LABEL_NO_LOADERBIN              ; could'nt find LOADER.BIN
     dec word [wRootDirSizeForLoop]      ; wRootDirSizeForLoop--
-    mov ax, BaseOfLoader                ; \
+    mov ax, BaseOfLoader                ; \ ;
     mov es, ax                          ; set params
     mov bx, OffsetOfLoader              ; set
     mov ax, [wSectorNo]                 ; |
@@ -36,7 +36,7 @@ LABEL_SEARCH_IN_ROOT_DIR_BEGIN:
     cld                                 ; clear direction flag[cld/std]
     mov dx, 10h
 LABEL_SEARCH_FOR_LOADERBIN:
-    cmp dx, 0                               ; \
+    cmp dx, 0                               ; \ ;
     jz  LABEL_GOTO_NEXT_SECTOR_IN_ROOT_DIR  ;   read over then goto next sector
     dec dx                                  ; /
     mov cx, 11                              ; 11 charactors
@@ -69,6 +69,8 @@ LABEL_NO_LOADERBIN:
     jmp $
 
 LABEL_FILENAME_FOUND:
+    mov dh, 1
+    call DisStr
     jmp $
 
 ; ==============================================================
@@ -120,7 +122,7 @@ ReadSector:
     push    bx                  ; save bx
     mov     bl, [BPB_SecPerTrk] ; 18
     div     bl                  ; al/18
-    inc     ah                  ; \
+    inc     ah                  ; \ ;
     mov     cl, ah              ; cl <-- R++
     mov     dh, al              ; dh <-- Q
     shr     al, 1               ; Q >> 1
