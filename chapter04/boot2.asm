@@ -14,16 +14,9 @@ LABEL_START:
     mov ss, ax
     mov sp, BaseOfStack
 
-RST_FDD:        ; reset floppy disk driver
-;    push ax
-;    push dx
-
-    xor ax, ax
+    xor ah, ah
     xor dl, dl
     int 13h
- ;   pop dx
-;    pop ax
-;    ret
 
 ; read from Sector 1 only!
     mov word [wSectorNo], IRootSec
@@ -64,7 +57,11 @@ LABEL_DIFFERENT:
     and di, 0FFE0h          ; reset di = OffsetOfLoader
     add di, 20h
     mov si, LoaderFileName  ; reset si
-    jmp LABEL_SEARCH_IN_ROOT_DIR_BEGIN  ; search again
+    jmp LABEL_SEARCH_FOR_LOADERBIN  ; search again
+
+LABEL_GOTO_NEXT_SECTOR_IN_ROOT_DIR:
+	add	word [wSectorNo], 1
+	jmp	LABEL_SEARCH_IN_ROOT_DIR_BEGIN
 
 LABEL_NO_LOADERBIN:
     mov dh, 2
